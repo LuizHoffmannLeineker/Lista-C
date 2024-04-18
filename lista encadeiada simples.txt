@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+
+struct no{
+    int valor;
+    struct no *proximo;
+};
+
+void imprimirLista(struct no *atual){
+    while(atual != NULL){
+        printf("%d ", atual->valor);
+        atual = atual->proximo;
+    }
+}
+
+int main(){
+    struct no *cabeca;
+    struct no *primeiro;
+    struct no *segundo;
+    struct no *terceiro;
+    
+    primeiro = (struct no * ) malloc(sizeof(struct no));
+    segundo = (struct no *) malloc(sizeof(struct no));
+    terceiro = (struct no *) malloc(sizeof(struct no));
+
+
+    primeiro->valor = 10;
+    segundo->valor = 20;
+    terceiro->valor = 30;
+    
+    primeiro->proximo = segundo;
+    segundo->proximo = terceiro;
+    terceiro->proximo = NULL;
+
+    cabeca = primeiro;
+    imprimirLista(cabeca); 
+
+    return 0;
+}
