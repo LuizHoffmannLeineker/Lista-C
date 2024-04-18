@@ -1,0 +1,63 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+
+struct no{
+    int valor;
+    struct no *proximo;
+    int indice;
+};
+
+void buscarElemento(struct no *atual, int key){
+    int aux = 0;
+    while(atual != NULL){
+        if(atual->valor == key){
+            printf("\nelemento foi encontrado no %d", atual->indice);
+            aux = 1;
+        }
+        atual = atual->proximo;
+    }
+    
+    if(aux != 1){
+        printf("\no elemento não foi encontrado!\n");
+    }
+    
+}
+
+void imprimirLista(struct no *atual){
+    while(atual != NULL){
+        printf("%d ", atual->valor);
+        atual = atual->proximo;
+    }
+}
+
+int main(){
+    struct no *cabeca;
+    struct no *primeiro;
+    struct no *segundo;
+    struct no *terceiro;
+    int i = 1;
+    primeiro = (struct no * ) malloc(sizeof(struct no));
+    segundo = (struct no *) malloc(sizeof(struct no));
+    terceiro = (struct no *) malloc(sizeof(struct no));
+
+
+    primeiro->valor = 10;
+    segundo->valor = 20;
+    terceiro->valor = 30;
+    
+    primeiro->indice = i++;
+    segundo->indice = i++;
+    terceiro->indice = i++;
+    
+    primeiro->proximo = segundo;
+    segundo->proximo = terceiro;
+    terceiro->proximo = NULL;
+
+    cabeca = primeiro;
+    imprimirLista(cabeca); 
+    buscarElemento(cabeca, 20);
+
+    return 0;
+}
