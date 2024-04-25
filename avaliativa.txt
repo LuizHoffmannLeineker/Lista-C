@@ -1,0 +1,145 @@
+// Online C compiler to run C program online
+#include <stdio.h>
+#include <stdlib.h>
+
+struct no{
+    struct  no *proximo;
+    int valor;
+    int indice;
+};
+
+/* void novoElemento(){
+    struct no *atual;
+    int valor;
+    Printf("Digite o valor para o nó: ");
+    scanf("%d", &valor);
+    
+    novo
+    
+} */
+
+
+
+
+
+void imprimirLista(struct no *atual){
+    while(atual != NULL){
+        printf("%d ", atual->valor);
+        atual = atual->proximo;
+    }
+}
+
+
+
+void buscarElemento(struct no *atual, int key){
+    int aux = 0;
+    while(atual != NULL){
+        if(atual->valor == key){
+            printf("\nO numero foi encontrado no indice %d", atual->indice);
+            aux = 1;
+        }
+        atual = atual->proximo;
+    }
+    if(aux != 1){
+        printf("Não foi possivel encontrar o numero inserido!");
+    }
+}
+
+
+int main() {
+    int opcao, key;
+    struct no *cabeca = NULL;
+    struct no *atual = NULL;
+    struct no *novo = NULL;
+    int valor;
+    
+    
+    cabeca = (struct no*) malloc(sizeof(struct no));
+    atual = (struct no*) malloc(sizeof(struct no));
+    
+    
+
+    
+    
+   
+    
+    do{
+        printf("\n\n+-------------------------------------------+\n");
+        printf("| [1] - Inserir elemento no inicio          |\n");
+        printf("| [2] - Inserir elemento no fim             |\n");
+        printf("| [3] - Excluir elemento                    |\n");
+        printf("| [4] - Buscar elemento                     |\n");
+        printf("| [5] - Lista elemento                      |\n");
+        printf("| [6] - Sair                                |\n");
+        printf("+-------------------------------------------+\n");
+        printf("Insira um numero de acordo com as opçoes: ");
+        scanf("%d", &opcao);
+        
+        
+        switch(opcao){
+            
+            case 1:
+                printf("Digite o valor para o nó: ");
+                scanf("%d", &valor);
+                
+                novo = (struct no*) malloc(sizeof(struct no)); 
+                
+                novo->valor = valor;
+                novo->proximo = NULL;
+                
+                if(cabeca == NULL){
+                    cabeca = novo;
+                    atual = cabeca;
+                }
+                else{
+                    atual->proximo = novo;
+                    atual = novo;
+                }
+                  
+            
+                //fazer uma função para inserir elementos infinitos
+                // se não inserir o numero no inicio
+                //e colocar o numero do inicio em outro local.
+                /* printf("Insira o numero para ser inserido no começo da lista: ");
+                scanf("%d", &primeiro->valor); */
+                
+            break;
+            
+            
+            case 2:
+                
+            break;
+            
+            case 3:
+            
+            break;
+            
+            case 4:
+                printf("Insira o elemento que deseja buscar: ");
+                scanf("%d", &key);
+                buscarElemento(cabeca, key);
+            break;
+            
+            case 5:
+                printf("\nOs numero atual da Lista: ");
+                imprimirLista(cabeca);
+            break;
+            
+            
+            
+        }
+        
+        
+        
+    }while(opcao!=6);
+    
+    free(cabeca);
+    free(atual);
+    free(novo);
+   
+    
+    
+    
+
+    return 0;
+}
